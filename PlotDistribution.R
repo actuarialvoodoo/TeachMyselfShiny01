@@ -2,7 +2,9 @@ library(shiny)
 library(ggplot2)
 library(tibble)
 library(colourpicker)
+library(stringr)
 
+source("plot_data.R")
 ui <- tagList(
   selectInput("dist", 
               label = "Distribution", 
@@ -19,7 +21,7 @@ ui <- tagList(
 )
 
 server <- function(input, output, session) {
-    source("reactive_logic.R")
+    source("reactive_logic.R", local = TRUE)
 }
 
 shinyApp(ui, server)
