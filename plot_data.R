@@ -22,3 +22,9 @@ set_param_range <- function(dist_name) {
     list(mean = list(min = -Inf, max = Inf),
          sd = list(min = 0, max = Inf))
 }
+
+extract_dist_params <- function(dist_name) {
+    dfun <- get(paste0("d", dist_name))
+    params <- names(formals(dfun))
+    params[!(params %in% c("x", "log"))]
+}
