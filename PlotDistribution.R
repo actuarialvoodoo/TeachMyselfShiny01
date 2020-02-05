@@ -5,19 +5,21 @@ library(colourpicker)
 library(stringr)
 
 source("plot_data.R")
-ui <- tagList(
-  selectInput("dist", 
-              label = "Distribution", 
-              choices = c("Select a distribution" = "",
-                          "Normal" = "norm",
-                          "Lognormal" = "lnorm",
-                          "Expontential" = "exp")),
-  uiOutput("params"),
-  colourInput("color", 
-              label = "What color should it be?", 
-              value = "black",
-              showColour = "both"),
-  plotOutput("density")
+ui <- fluidPage(
+    column(3,
+           selectInput("dist", 
+                       label = "Distribution", 
+                       choices = c("Select a distribution" = "",
+                                   "Normal" = "norm",
+                                   "Lognormal" = "lnorm",
+                                   "Expontential" = "exp")),
+           uiOutput("params"),
+           colourInput("color", 
+                       label = "What color should it be?", 
+                       value = "black",
+                       showColour = "both"),
+    ),
+    column(9, plotOutput("density"))
 )
 
 server <- function(input, output, session) {
